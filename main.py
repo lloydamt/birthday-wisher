@@ -16,7 +16,7 @@ MY_EMAIL = config('email')
 PASSWORD = config('password')
 
 # replace name in mail
-def change_name(name):
+def pick_email(name):
     letter_num = random.randint(1, 3)
     try:
         with open(f"letter_templates/letter_{letter_num}.txt") as letter_file:
@@ -52,5 +52,5 @@ friends_data = data.to_dict(orient="records")
 # loop through friend data to check dates
 for friend in friends_data:
     if friend['month'] == month and friend['day'] == day:
-        birthday_email = change_name(friend['name'])
+        birthday_email = pick_email(friend['name'])
         send_email(email_add=friend['email'], content=birthday_email)
